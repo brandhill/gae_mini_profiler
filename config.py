@@ -20,7 +20,8 @@ def _should_profile_production_default():
     """Default to disabling in production if this function isn't overridden.
 
     Can be overridden in appengine_config.py"""
-    return False
+    from google.appengine.api import users
+    return users.is_current_user_admin()
 
 def _should_profile_development_default():
     """Default to enabling in development if this function isn't overridden.
